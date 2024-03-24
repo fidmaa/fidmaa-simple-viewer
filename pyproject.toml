@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "fidmaa-simple-viewer"
+version = "0.1.0"
+description = "Simple viewer for depth-mapped images"
+authors = ["Michał Pasternak <michal.dtz@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+opencv-python = "^4.9.0.80"
+numpy = "^1.26.4"
+pyvista = "^0.43.4"
+portrait-analyser = "^0.1.2"
+click = "^8.1.7"
+tqdm = "^4.66.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+display_fidmaa_image = "fidmaa_simple_viewer.core:display_fidmaa_image"

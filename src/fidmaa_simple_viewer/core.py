@@ -72,7 +72,6 @@ def visualise_fidmaa_image(filename):
 @click.command()
 @click.argument('input')
 def display_fidmaa_image(input):
-    from portrait_analyser.ios import load_image
     visualise_fidmaa_image(input)
 
 
