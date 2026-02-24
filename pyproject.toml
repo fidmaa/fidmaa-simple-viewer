@@ -1,6 +1,6 @@
 [project]
 name = "fidmaa-simple-viewer"
-version = "0.1.0"
+version = "0.1.1"
 description = "Simple viewer for depth-mapped images"
 authors = [
     { name = "Michał Pasternak", email = "michal.dtz@gmail.com" },
