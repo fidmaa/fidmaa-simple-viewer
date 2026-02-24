@@ -42,3 +42,4 @@ def test_cli_help():
     assert result.exit_code == 0
     assert '--depth-scale' in result.output
     assert '--depth-cutoff' in result.output
+    assert '--no-texture' in result.output
