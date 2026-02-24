@@ -9,12 +9,10 @@ license = { text = "MIT" }
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
 dependencies = [
-    "opencv-python>=4.9.0.80",
     "numpy>=1.26.4",
     "pyvista>=0.43.4",
     "portrait-analyser>=0.1.2",
     "click>=8.1.7",
-    "tqdm>=4.66.2",
 ]
 
 [project.scripts]

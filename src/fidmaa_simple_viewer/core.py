@@ -1,4 +1,3 @@
-import sys
 import click
 
 import numpy as np
@@ -8,17 +7,9 @@ from portrait_analyser.ios import load_image
 
 
 def depth_map_to_point_cloud(depth_map):
-    # This function was written by ChatGPT 3, with some minor corrections
-    # from a human later
     rows, cols = depth_map.shape
-    points = []
-
-    for y in range(rows):
-        for x in range(cols):
-            depth = depth_map[y, x]
-            points.append([x, y, depth])
-
-    return np.array(points)
+    yy, xx = np.mgrid[0:rows, 0:cols]
+    return np.column_stack([xx.ravel(), yy.ravel(), depth_map.ravel()])
 
 
 def Image_to_OpenCV(image: Image):
@@ -26,21 +17,20 @@ def Image_to_OpenCV(image: Image):
 
 
 def FIDMAA_to_pyvista_surface(image, depthmap):
-    import pyvista, cv2
+    import pyvista
 
     depthmap = Image_to_OpenCV(depthmap.convert("L"))
-    depthmap = cv2.flip(depthmap, 0)
+    depthmap = np.flipud(depthmap)
 
     # Load an image to use as a texture
     colors = np.array(image)
-    # colors = cv2.resize(colors, (640, 480))
 
     # Convert depth map to point cloud
     point_cloud = depth_map_to_point_cloud(depthmap)
 
     pdata = pyvista.PolyData(point_cloud, force_float=False)
     # Compute the surface mesh from the point cloud using the Delaunay triangulation
-    surface = pdata.delaunay_2d(progress_bar=True)
+    surface = pdata.delaunay_2d()
 
     # Create a PyVista image object from the RGB image data
     image_pv = pyvista.pyvista_ndarray(colors)
