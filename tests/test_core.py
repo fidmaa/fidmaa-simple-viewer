@@ -26,8 +26,11 @@ def test_depth_map_to_point_cloud():
 
 
 def test_fidmaa_to_pyvista_surface(heic_image_path):
-    image, depthmap = load_image(str(heic_image_path))
-    surface, texture = FIDMAA_to_pyvista_surface(image, depthmap)
+    portrait = load_image(str(heic_image_path))
+    surface, texture = FIDMAA_to_pyvista_surface(
+        portrait.photo, portrait.depthmap,
+        portrait.floatValueMin, portrait.floatValueMax,
+    )
     assert surface.n_points > 0
     assert surface.n_faces_strict > 0
     assert texture is not None
@@ -37,3 +40,5 @@ def test_cli_help():
     runner = CliRunner()
     result = runner.invoke(display_fidmaa_image, ['--help'])
     assert result.exit_code == 0
+    assert '--depth-scale' in result.output
+    assert '--depth-cutoff' in result.output

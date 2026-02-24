@@ -11,7 +11,7 @@ requires-python = ">=3.12,<3.13"
 dependencies = [
     "numpy>=1.26.4",
     "pyvista>=0.43.4",
-    "portrait-analyser>=0.1.2",
+    "portrait-analyser>=0.2.0",
     "click>=8.1.7",
 ]
 
